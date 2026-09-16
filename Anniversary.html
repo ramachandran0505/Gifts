@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Anniversary, Kimi ❤</title>
+  <meta name="description" content="A timeless anniversary celebration of our love, memories, and journey together.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS RESET & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      --wine-900: #2d0812;
+      --wine-800: #4a0e17;
+      --wine-700: #6b1526;
+      --wine-600: #8c1d35;
+      --wine-500: #a92942;
+      
+      --blush-50:  #fffaf9;
+      --blush-100: #fdf5f5;
+      --blush-200: #fcebeb;
+      --blush-300: #f9d8dc;
+      --blush-400: #f1b0b7;
+      
+      --gold-100: #faf3e0;
+      --gold-200: #f5e4b8;
+      --gold-300: #e6ca65;
+      --gold-400: #d4af37;
+      --gold-500: #c5a059;
+      --gold-600: #aa823a;
+      
+      --cream: #faf7f2;
+      --ivory: #fffffb;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-glass: rgba(255, 253, 250, 0.75);
+      
+      --font-heading: 'Playfair Display', serif;
+      --font-subheading: 'Cormorant Garamond', serif;
+      --font-script: 'Great Vibes', cursive;
+      --font-body: 'Montserrat', sans-serif;
+      
+      --shadow-luxury: 0 15px 35px -10px rgba(74, 14, 23, 0.12), 0 0 25px rgba(212, 175, 55, 0.08);
+      --shadow-deep: 0 25px 50px -12px rgba(45, 8, 18, 0.25);
+      --gold-border: 1px solid rgba(212, 175, 55, 0.35);
+      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f9e29d 50%, #aa823a 100%);
+      --wine-gradient: linear-gradient(135deg, #4a0e17 0%, #72182b 60%, #30080e 100%);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--wine-900);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    /* Ambient Particle Canvas Overlay */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Initial Entrance Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ==========================================================================
+       FLOATING STICKY NAVIGATION DOTS
+       ========================================================================== */
+    .side-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .nav-dot {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      text-decoration: none;
+      outline: none;
+    }
+
+    .nav-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--wine-800);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-right: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .nav-dot:hover .nav-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .dot-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-400);
+      background: transparent;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .nav-dot.active .dot-circle {
+      background: var(--gold-gradient);
+      transform: scale(1.4);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.8), 0 0 4px rgba(74, 14, 23, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .side-nav {
+        right: 1rem;
+        gap: 1rem;
+      }
+      .nav-label {
+        display: none;
+      }
+      .dot-circle {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    /* ==========================================================================
+       AUDIO MUSIC CONTROLLER (Floating Button)
+       ========================================================================== */
+    .audio-control {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .audio-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--wine-gradient);
+      border: 2px solid var(--gold-400);
+      color: var(--gold-200);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(74, 14, 23, 0.35), 0 0 12px rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+      outline: none;
+      position: relative;
+    }
+
+    .audio-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 25px rgba(74, 14, 23, 0.45), 0 0 18px rgba(212, 175, 55, 0.5);
+    }
+
+    .audio-waves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-300);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .audio-btn.playing .audio-waves {
+      animation: audioPulse 2s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes audioPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    .audio-tooltip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--wine-800);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      transition: opacity 0.3s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .audio-control {
+        bottom: 1.25rem;
+        left: 1.25rem;
+      }
+      .audio-btn {
+        width: 44px;
+        height: 44px;
+      }
+      .audio-tooltip {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 1: HERO / HOME (Full Viewport)
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Hero Background with Dark Elegant Romantic Vignette */
+    .hero-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    #hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.72) contrast(1.05) saturate(1.15);
+      transform: scale(1.04);
+      animation: slowZoom 22s alternate infinite ease-in-out;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1.02); }
+      100% { transform: scale(1.10); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(74, 14, 23, 0.55) 0%, rgba(45, 8, 18, 0.88) 80%, rgba(25, 4, 10, 0.96) 100%),
+                  linear-gradient(to bottom, rgba(74, 14, 23, 0.4) 0%, transparent 40%, rgba(30, 6, 12, 0.85) 100%);
+      backdrop-filter: blur(1.5px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    /* Romantic Crest / Monogram */
+    .hero-crest {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .crest-line {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-400));
+    }
+    .crest-line.right {
+      background: linear-gradient(90deg, var(--gold-400), transparent);
+    }
+
+    .crest-heart {
+      color: var(--gold-300);
+      font-size: 1.2rem;
+      animation: pulseGlow 2.5s infinite ease-in-out;
+      display: inline-block;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
+      50% { transform: scale(1.22); filter: drop-shadow(0 0 16px rgba(248, 187, 208, 0.9)); }
+    }
+
+    /* Wife's Name Script Glow */
+    .hero-wife-name {
+      font-family: var(--font-script);
+      font-size: clamp(3.8rem, 9vw, 6.8rem);
+      line-height: 1.1;
+      font-weight: 400;
+      color: #fff7fa;
+      background: linear-gradient(135deg, #ffffff 10%, #ffdde5 50%, #f7c3cb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(248, 187, 208, 0.5);
+      position: relative;
+      animation: shimmerText 5s infinite linear;
+      padding-bottom: 0.35rem;
+    }
+
+    @keyframes shimmerText {
+      0%, 100% { filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.45)); }
+      50% { filter: drop-shadow(0 0 24px rgba(241, 176, 183, 0.85)); }
+    }
+
+    /* Headline with Typewriter Cursor */
+    .hero-headline-wrapper {
+      min-height: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--gold-200);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      display: inline;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.3em;
+      background-color: var(--gold-300);
+      margin-left: 5px;
+      vertical-align: middle;
+      animation: blinkCursor 0.9s infinite;
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-divider {
+      width: 140px;
+      height: 2px;
+      background: var(--gold-gradient);
+      border-radius: 2px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+      margin: 0.5rem auto;
+    }
+
+    /* Subtext */
+    .hero-date {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+      font-style: italic;
+      letter-spacing: 0.12em;
+      color: var(--blush-300);
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .hero-romantic-quote {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 650px;
+      line-height: 1.7;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      margin-top: 0.25rem;
+    }
+
+    /* Bouncing Scroll Down Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold-300);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .scroll-indicator:hover {
+      opacity: 1;
+      color: #fff;
+    }
+
+    .scroll-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: gentleBounce 2.2s infinite ease-in-out;
+      background: rgba(74, 14, 23, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    @keyframes gentleBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(8px); }
+      60% { transform: translateY(4px); }
+    }
+
+    /* ==========================================================================
+       SECTION 2: OUR STORY (Interactive Milestone Timeline)
+       ========================================================================== */
+    .story-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      padding: 7rem 1.5rem 6rem;
+      background: linear-gradient(180deg, #faf7f2 0%, #fdf5f5 50%, #faf7f2 100%);
+      overflow: hidden;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4.5rem;
+    }
+
+    .section-badge {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--wine-700);
+      background: var(--blush-300);
+      display: inline-block;
+      padding: 0.35rem 1.25rem;
+      border-radius: 30px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--wine-800);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-style: italic;
+      color: #6d4c53;
+      line-height: 1.6;
+    }
+
+    /* Timeline Container */
+    .timeline-container {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Animated Dynamic Center Line */
+    .timeline-center-track {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      transform: translateX(-50%);
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 3px;
+    }
+
+    .timeline-progress-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 3px;
+      transform: translateX(-50%);
+      background: var(--gold-gradient);
+      border-radius: 3px;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+      height: 0%;
+      transition: height 0.15s ease-out;
+    }
+
+    /* Milestone Row */
+    .milestone-item {
+      position: relative;
+      display: flex;
+      margin-bottom: 4.5rem;
+      width: 100%;
+    }
+
+    .milestone-item:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Alternating Left / Right */
+    .milestone-item:nth-child(odd) {
+      justify-content: flex-start;
+    }
+
+    .milestone-item:nth-child(even) {
+      justify-content: flex-end;
+    }
+
+    /* Central Icon Pin */
+    .milestone-pin {
+      position: absolute;
+      left: 50%;
+      top: 2rem;
+      transform: translate(-50%, -50%) scale(0.3);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--wine-gradient);
+      border: 3px solid var(--gold-400);
+      color: var(--gold-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+      z-index: 5;
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+    }
+
+    .milestone-item.in-view .milestone-pin {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .milestone-item:hover .milestone-pin {
+      transform: translate(-50%, -50%) scale(1.22);
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.8), 0 0 10px rgba(140, 29, 53, 0.6);
+    }
+
+    .milestone-pin svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Milestone Card */
+    .milestone-card {
+      width: 44%;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 1.8rem;
+      border: var(--gold-border);
+      box-shadow: var(--shadow-luxury);
+      backdrop-filter: blur(10px);
+      transition: opacity 0.7s cubic-bezier(0.34, 1.35, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.35, 0.64, 1);
+      position: relative;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .milestone-item:nth-child(odd) .milestone-card {
+      transform: translateX(-50px) translateY(35px) scale(0.93);
+    }
+
+    .milestone-item:nth-child(even) .milestone-card {
+      transform: translateX(50px) translateY(35px) scale(0.93);
+    }
+
+    .milestone-item.in-view .milestone-card {
+      opacity: 1;
+      transform: translateX(0) translateY(0) scale(1);
+    }
+
+    .milestone-card:hover {
+      box-shadow: var(--shadow-deep), 0 0 25px rgba(212, 175, 55, 0.2);
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.7);
+    }
+
+    /* Milestone Photo Frame */
+    .milestone-photo-frame {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      position: relative;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .milestone-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .milestone-card:hover .milestone-img {
+      transform: scale(1.07);
+    }
+
+    .milestone-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--wine-700);
+      background: var(--gold-100);
+      padding: 0.25rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 0.75rem;
+    }
+
+    .milestone-title {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--wine-800);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .milestone-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: #55343c;
+      line-height: 1.65;
+    }
+
+    /* Timeline Responsive Mobile Layout */
+    @media (max-width: 850px) {
+      .story-section {
+        padding: 5rem 1rem 4rem;
+      }
+      .timeline-center-track,
+      .timeline-progress-line {
+        left: 24px;
+      }
+      .milestone-item {
+        margin-bottom: 3.5rem;
+      }
+      .milestone-item:nth-child(odd),
+      .milestone-item:nth-child(even) {
+        justify-content: flex-end;
+      }
+      .milestone-pin {
+        left: 24px;
+        top: 1.75rem;
+        width: 38px;
+        height: 38px;
+      }
+      .milestone-pin svg {
+        width: 16px;
+        height: 16px;
+      }
+      .milestone-card {
+        width: calc(100% - 60px);
+        padding: 1.4rem;
+      }
+      .milestone-item:nth-child(odd) .milestone-card,
+      .milestone-item:nth-child(even) .milestone-card {
+        transform: translateY(40px) scale(0.93);
+      }
+      .milestone-item.in-view .milestone-card {
+        transform: translateY(0) scale(1) !important;
+        opacity: 1;
+      }
+      .milestone-pin {
+        left: 24px;
+        top: 1.75rem;
+        transform: translate(-50%, -50%) scale(0.3);
+      }
+      .milestone-item.in-view .milestone-pin {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .milestone-photo-frame {
+        height: 160px;
+      }
+    }
+
+    /* ==========================================================================
+       SECTION 3: GALLERY & LOVE NOTE
+       ========================================================================== */
+    .gallery-note-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      padding: 7rem 1.5rem 6rem;
+      background: linear-gradient(180deg, #faf7f2 0%, #f7eaed 40%, #2f0813 95%);
+      color: var(--wine-900);
+      overflow: hidden;
+    }
+
+    /* Responsive Masonry-Style Grid */
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto 7rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 240px;
+      gap: 1.5rem;
+    }
+
+    /* Curated Editorial Spans */
+    .gallery-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-luxury);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: #eee;
+      opacity: 0;
+      transform: translateY(45px) scale(0.92);
+      transition: opacity 0.65s cubic-bezier(0.34, 1.35, 0.64, 1), transform 0.65s cubic-bezier(0.34, 1.35, 0.64, 1);
+      will-change: transform, opacity;
+    }
+
+    .gallery-item.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; transition-delay: 0.05s; }
+    .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; transition-delay: 0.12s; }
+    .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 2; transition-delay: 0.18s; }
+    .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; transition-delay: 0.24s; }
+    .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 2; transition-delay: 0.1s; }
+    .gallery-item:nth-child(6) { grid-column: span 2; grid-row: span 1; transition-delay: 0.16s; }
+    .gallery-item:nth-child(7) { grid-column: span 1; grid-row: span 1; transition-delay: 0.22s; }
+    .gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 1; transition-delay: 0.28s; }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(74, 14, 23, 0.88) 0%, rgba(74, 14, 23, 0.25) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: all 0.35s ease;
+      color: #fff;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.08);
+      filter: brightness(1.04);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      box-shadow: 0 20px 40px rgba(74, 14, 23, 0.25), 0 0 20px rgba(212, 175, 55, 0.4);
+      border-color: var(--gold-400);
+    }
+
+    .gallery-item-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--gold-200);
+      margin-bottom: 0.2rem;
+    }
+
+    .gallery-item-sub {
+      font-family: var(--font-subheading);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--blush-200);
+    }
+
+    .gallery-zoom-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1rem;
+        margin-bottom: 5rem;
+      }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+      .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+      .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+      .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
+      .gallery-item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+      .gallery-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
+      .gallery-item:nth-child(8) { grid-column: span 1; grid-row: span 1; }
+    }
+
+    @media (max-width: 500px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 230px;
+      }
+      .gallery-item:nth-child(n) {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+
+    /* ==========================================================================
+       LOVE NOTE / LETTER SECTION (Deckle-Edge Parchment Card)
+       ========================================================================== */
+    .love-note-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .love-note-card {
+      background: #fffff8;
+      border-radius: 24px;
+      padding: clamp(2.5rem, 6vw, 4.5rem);
+      box-shadow: 0 25px 60px -15px rgba(25, 4, 10, 0.4), 0 0 35px rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(50px) scale(0.94);
+      transition: opacity 0.8s cubic-bezier(0.34, 1.35, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.35, 0.64, 1);
+      will-change: transform, opacity;
+    }
+
+    .love-note-card.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Ornate Gold Border Inset */
+    .card-ornament-border {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .card-corner-motif {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold-400);
+      border-style: solid;
+      pointer-events: none;
+    }
+    .top-left { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
+    .top-right { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
+    .bottom-left { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
+    .bottom-right { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+
+    /* Wax Seal Stamp */
+    .wax-seal {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #9b1c35, #5a0e1b 75%, #35050e 100%);
+      box-shadow: 0 8px 18px rgba(45, 8, 18, 0.45), inset 0 2px 5px rgba(255, 255, 255, 0.35);
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-300);
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      border: 2px dashed rgba(212, 175, 55, 0.4);
+      position: relative;
+    }
+
+    .wax-seal::after {
+      content: '❤';
+      font-size: 1.6rem;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+    }
+
+    .love-note-salutation {
+      font-family: var(--font-script);
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      color: var(--wine-800);
+      margin-bottom: 1.75rem;
+      text-align: left;
+    }
+
+    .love-note-body {
+      font-family: var(--font-subheading);
+      font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+      line-height: 2;
+      color: #38121a;
+      text-align: left;
+    }
+
+    .love-note-body p {
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .love-note-card.in-view .love-note-body p:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+    .love-note-card.in-view .love-note-body p:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+    .love-note-card.in-view .love-note-body p:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+
+    .love-note-valediction {
+      margin-top: 2.5rem;
+      text-align: right;
+    }
+
+    .valediction-phrase {
+      font-family: var(--font-subheading);
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #6a2533;
+      margin-bottom: 0.35rem;
+    }
+
+    .valediction-name {
+      font-family: var(--font-script);
+      font-size: clamp(2.6rem, 5.5vw, 3.6rem);
+      color: var(--wine-800);
+      line-height: 1.1;
+      display: inline-block;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+    }
+
+    /* Footer */
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      color: var(--blush-300);
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .footer-heart {
+      color: #ff476f;
+      display: inline-block;
+      animation: pulseGlow 1.8s infinite ease-in-out;
+      font-size: 1.1rem;
+    }
+
+    .footer-date {
+      font-family: var(--font-subheading);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold-300);
+      margin-top: 0.4rem;
+    }
+
+    /* ==========================================================================
+       PHOTO LIGHTBOX MODAL
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(18, 2, 7, 0.94);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 1.8rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      outline: none;
+    }
+
+    .lightbox-close-btn:hover {
+      background: rgba(212, 175, 55, 0.35);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      outline: none;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: rgba(212, 175, 55, 0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-nav-btn.prev { left: 2rem; }
+    .lightbox-nav-btn.next { right: 2rem; }
+
+    .lightbox-img-wrapper {
+      max-width: 90vw;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .lightbox-caption-box {
+      margin-top: 1.25rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .lightbox-caption-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--gold-200);
+      margin-bottom: 0.25rem;
+    }
+
+    .lightbox-caption-sub {
+      font-family: var(--font-subheading);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--blush-300);
+    }
+
+    .lightbox-counter {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-nav-btn.prev { left: 0.8rem; width: 42px; height: 42px; }
+      .lightbox-nav-btn.next { right: 0.8rem; width: 42px; height: 42px; }
+      .lightbox-close-btn { top: 1rem; right: 1rem; width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING CANVAS PARTICLES (Rose Petals & Gentle Hearts) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- CELEBRATORY INTRO BURST CANVAS -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- FIXED STICKY SIDE NAVIGATION (Right Side) -->
+  <nav class="side-nav" aria-label="Section Navigation">
+    <a href="#hero" class="nav-dot active" data-section="hero" aria-label="Go to Home">
+      <span class="nav-label">Home</span>
+      <span class="dot-circle"></span>
+    </a>
+    <a href="#story" class="nav-dot" data-section="story" aria-label="Go to Our Story">
+      <span class="nav-label">Our Story</span>
+      <span class="dot-circle"></span>
+    </a>
+    <a href="#gallery-note" class="nav-dot" data-section="gallery-note" aria-label="Go to Gallery & Love Note">
+      <span class="nav-label">Memories & Letter</span>
+      <span class="dot-circle"></span>
+    </a>
+  </nav>
+
+  <!-- BACKGROUND MUSIC CONTROLLER (Floating Audio Toggle) -->
+  <!-- NOTE: To play your own music, replace the src below with your mp3 file path (e.g., music.mp3) -->
+  <div class="audio-control">
+    <button class="audio-btn" id="audioToggleBtn" title="Toggle Romantic Background Music" aria-label="Toggle background music">
+      <span class="audio-waves"></span>
+      <!-- Sound Icon -->
+      <svg id="audioIcon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+    <div class="audio-tooltip" id="audioStatusTooltip">Romantic Music: Tap to Play</div>
+    <audio id="bg-audio" loop preload="none">
+      <!-- Fallback royalty-free soothing acoustic romantic melody -->
+      <source src="https://actions.google.com/sounds/v1/water/rain_heavy.ogg" type="audio/ogg">
+    </audio>
+  </div>
+
+  <!-- ==========================================================================
+       SECTION 1: HERO / HOME
+       ========================================================================== -->
+  <section id="hero" class="hero-section" data-nav="hero">
+    <!-- Hero Background: REPLACE WITH COUPLE PHOTO IF DESIRED -->
+    <div class="hero-bg-container">
+      <!-- PLACEHOLDER COUPLE HERO PHOTO: Replace src with your favorite high-res photo -->
+      <img id="hero-photo" 
+           src="images/hero.jpg" 
+           alt="Romantic Couple Celebration Background">
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Hero Content Overlay -->
+    <div class="hero-content">
+      <!-- Golden Monogram Crest -->
+      <div class="hero-crest">
+        <span class="crest-line"></span>
+        <span class="crest-heart">❤</span>
+        <span class="crest-line right"></span>
+      </div>
+
+      <!-- Wife's Name -->
+      <h1 class="hero-wife-name" id="wifeName">Kimi</h1>
+
+      <!-- Typewriter Headline -->
+      <div class="hero-headline-wrapper">
+        <h2 class="hero-headline" id="typewriterText"></h2>
+        <span class="typewriter-cursor"></span>
+      </div>
+
+      <!-- Golden Divider -->
+      <div class="hero-divider"></div>
+
+      <!-- Anniversary Date & Romantic Line: REPLACE WITH YOUR DATES -->
+      <p class="hero-date">September 16, 2024 &bull; Our Everlasting Journey</p>
+      
+      <p class="hero-romantic-quote">
+        "Every single day with you is my favorite page in our book. Happy Anniversary to the love of my life."
+      </p>
+    </div>
+
+    <!-- Bouncing Scroll Down Arrow Indicator -->
+    <a href="#story" class="scroll-indicator" aria-label="Scroll down to our story">
+      <span>Our Journey</span>
+      <div class="scroll-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </a>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: OUR STORY (Interactive Milestone Timeline)
+       ========================================================================== -->
+  <section id="story" class="story-section" data-nav="story">
+    <div class="section-header">
+      <span class="section-badge">How It All Began</span>
+      <h2 class="section-title">Chapters of Us</h2>
+      <p class="section-subtitle">A collection of moments that turned two strangers into soulmates.</p>
+    </div>
+
+    <div class="timeline-container">
+      <!-- Vertical Center Guides -->
+      <div class="timeline-center-track"></div>
+      <div class="timeline-progress-line" id="timelineProgressLine"></div>
+
+      <!-- MILESTONE 1: The Day We Met -->
+      <div class="milestone-item">
+        <div class="milestone-pin" title="First Encounter">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div class="milestone-card">
+          <!-- PHOTO PLACEHOLDER 1: REPLACE WITH FIRST ENCOUNTER PHOTO -->
+          <div class="milestone-photo-frame" id="milestone-photo-1">
+            <img class="milestone-img" src="milestone1.jpg" alt="The Day We Met">
+          </div>
+          <span class="milestone-date-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            Chapter I &bull; Spring 2019
+          </span>
+          <h3 class="milestone-title">The Day We Met</h3>
+          <p class="milestone-desc">
+            It started with a casual introduction and a warm smile that stopped time. In that crowded room, I didn't know yet that my whole universe was about to change forever.
+          </p>
+        </div>
+      </div>
+
+      <!-- MILESTONE 2: First Date -->
+      <div class="milestone-item">
+        <div class="milestone-pin" title="Our First Date">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </div>
+        <div class="milestone-card">
+          <!-- PHOTO PLACEHOLDER 2: REPLACE WITH FIRST DATE PHOTO -->
+          <div class="milestone-photo-frame" id="milestone-photo-2">
+            <img class="milestone-img" src="milestone2.jpg" alt="First Date Cafe">
+          </div>
+          <span class="milestone-date-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            Chapter II &bull; Summer Evening
+          </span>
+          <h3 class="milestone-title">Our First Date</h3>
+          <p class="milestone-desc">
+            One quick coffee turned into four hours of non-stop laughing, sharing dreams, and walking under the city streetlights. I knew on the drive home I had found someone extraordinary.
+          </p>
+        </div>
+      </div>
+
+      <!-- MILESTONE 3: The Proposal -->
+      <div class="milestone-item">
+        <div class="milestone-pin" title="The Proposal">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <div class="milestone-card">
+          <!-- PHOTO PLACEHOLDER 3: REPLACE WITH PROPOSAL PHOTO -->
+          <div class="milestone-photo-frame" id="milestone-photo-3">
+            <img class="milestone-img" src="milestone3.jpg" alt="The Proposal Ring">
+          </div>
+          <span class="milestone-date-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            Chapter III &bull; Golden Sunset
+          </span>
+          <h3 class="milestone-title">The Proposal</h3>
+          <p class="milestone-desc">
+            With hands trembling and my heart pounding in my chest, I asked you to be mine for all eternity. Hearing you whisper "Yes" through tears of joy remains the greatest sound in this world.
+          </p>
+        </div>
+      </div>
+
+      <!-- MILESTONE 4: Our Wedding Day -->
+      <div class="milestone-item">
+        <div class="milestone-pin" title="Our Wedding Day">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div class="milestone-card">
+          <!-- PHOTO PLACEHOLDER 4: REPLACE WITH WEDDING DAY PHOTO -->
+          <div class="milestone-photo-frame" id="milestone-photo-4">
+            <img class="milestone-img" src="milestone4.jpg" alt="Our Wedding Day">
+          </div>
+          <span class="milestone-date-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            Chapter IV &bull; The Big Day
+          </span>
+          <h3 class="milestone-title">Our Wedding Day</h3>
+          <p class="milestone-desc">
+            Surrounded by blossoms, music, and the people we cherish most, we exchanged vows and rings. Watching you walk down the aisle took my breath away—and it still does every single day.
+          </p>
+        </div>
+      </div>
+
+      <!-- MILESTONE 5: Today & Forever -->
+      <div class="milestone-item">
+        <div class="milestone-pin" title="Today and Forever">
+          <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.169-7.333-3.856-7.333 3.856 1.399-8.169-5.934-5.784 8.2-1.192zm0 5.702l-2.223 4.505-4.972.723 3.598 3.507-.849 4.953 4.446-2.338 4.446 2.338-.849-4.953 3.598-3.507-4.972-.723z"/></svg>
+        </div>
+        <div class="milestone-card">
+          <!-- PHOTO PLACEHOLDER 5: REPLACE WITH RECENT COUPLE PHOTO -->
+          <div class="milestone-photo-frame" id="milestone-photo-5">
+            <img class="milestone-img" src="milestone5.jpg" alt="Today and Forever">
+          </div>
+          <span class="milestone-date-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+            Chapter V &bull; Present & Always
+          </span>
+          <h3 class="milestone-title">Today & Forever</h3>
+          <p class="milestone-desc">
+            Through late-night conversations, shared dreams, quiet mornings, and every wild adventure in between, my love for you grows deeper with each passing second.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: GALLERY & LOVE NOTE
+       ========================================================================== -->
+  <section id="gallery-note" class="gallery-note-section" data-nav="gallery-note">
+    
+    <!-- TOP HALF: Curated Photo Gallery Grid -->
+    <div class="section-header">
+      <span class="section-badge">Captured In Time</span>
+      <h2 class="section-title">Our Treasury of Memories</h2>
+      <p class="section-subtitle">Click any photograph to view our cherished moments in full glory.</p>
+    </div>
+
+    <!-- Gallery Grid (8 Placeholder Slots with Zoom and Lightbox Trigger) -->
+    <div class="gallery-grid">
+      
+      <!-- GALLERY SLOT 1 -->
+      <div class="gallery-item" id="gallery-1" data-index="0" data-caption-title="Sunset by the Shore" data-caption-sub="Where the ocean met our laughter">
+        <img class="gallery-img" src="gallery1.jpg" alt="Sunset by the Shore">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Sunset by the Shore</h4>
+          <p class="gallery-item-sub">Where the ocean met our laughter</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 2 -->
+      <div class="gallery-item" id="gallery-2" data-index="1" data-caption-title="Spontaneous Roadtrips" data-caption-sub="Windows down, playlist on repeat">
+        <img class="gallery-img" src="gallery2.jpg" alt="Spontaneous Roadtrips">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Spontaneous Roadtrips</h4>
+          <p class="gallery-item-sub">Windows down, playlist on repeat</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 3 -->
+      <div class="gallery-item" id="gallery-3" data-index="2" data-caption-title="Under the Starlit Canopy" data-caption-sub="Dancing like no one else existed">
+        <img class="gallery-img" src="gallery3.jpg" alt="Under the Starlit Canopy">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Under the Starlit Canopy</h4>
+          <p class="gallery-item-sub">Dancing like no one else existed</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 4 -->
+      <div class="gallery-item" id="gallery-4" data-index="3" data-caption-title="Quiet Coffee Mornings" data-caption-sub="Warm mugs and sleepy smiles">
+        <img class="gallery-img" src="gallery4.jpg" alt="Quiet Coffee Mornings">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Quiet Coffee Mornings</h4>
+          <p class="gallery-item-sub">Warm mugs and sleepy smiles</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 5 -->
+      <div class="gallery-item" id="gallery-5" data-index="4" data-caption-title="Hand in Hand" data-caption-sub="Wherever we wander, I am home">
+        <img class="gallery-img" src="gallery5.jpg" alt="Hand in Hand">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Hand in Hand</h4>
+          <p class="gallery-item-sub">Wherever we wander, I am home</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 6 -->
+      <div class="gallery-item" id="gallery-6" data-index="5" data-caption-title="Our First Home" data-caption-sub="Filling empty rooms with pure love">
+        <img class="gallery-img" src="gallery6.jpg" alt="Our First Home">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Our First Home</h4>
+          <p class="gallery-item-sub">Filling empty rooms with pure love</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 7 -->
+      <div class="gallery-item" id="gallery-7" data-index="6" data-caption-title="Golden Hour Radiance" data-caption-sub="The way you light up every room">
+        <img class="gallery-img" src="gallery7.jpg" alt="Golden Hour Radiance">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">Golden Hour Radiance</h4>
+          <p class="gallery-item-sub">The way you light up every room</p>
+        </div>
+      </div>
+
+      <!-- GALLERY SLOT 8 -->
+      <div class="gallery-item" id="gallery-8" data-index="7" data-caption-title="A Million More Tomorrow" data-caption-sub="Just the beginning of our forever">
+        <img class="gallery-img" src="gallery8.jpg" alt="A Million More Tomorrow">
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon">&#x2922;</span>
+          <h4 class="gallery-item-title">A Million More Tomorrows</h4>
+          <p class="gallery-item-sub">Just the beginning of our forever</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM HALF: Handwritten Love Letter Section -->
+    <div class="love-note-wrapper">
+      <div class="love-note-card">
+        <!-- Luxury Ornate Corner Insets -->
+        <div class="card-ornament-border"></div>
+        <div class="card-corner-motif top-left"></div>
+        <div class="card-corner-motif top-right"></div>
+        <div class="card-corner-motif bottom-left"></div>
+        <div class="card-corner-motif bottom-right"></div>
+
+        <!-- Wax Seal Stamp -->
+        <div class="wax-seal" title="Sealed With Love"></div>
+
+        <!-- Letter Salutation -->
+        <h3 class="love-note-salutation">My Dearest Kimi,</h3>
+
+        <!-- Letter Body Text: REPLACE WITH YOUR PERSONAL WORDS -->
+        <div class="love-note-body">
+          <p>
+            When I look back at the years we have built side by side, what strikes me most isn't just the grand celebrations or faraway trips—it is the gentle, quiet beauty of our everyday life. The soft sound of your laughter echoing down the hallway, the comfort of your hand in mine after a long day, and the grace with which you love those around you.
+          </p>
+          <p>
+            You are my safe harbor in every storm, my loudest cheerleader, and my greatest source of inspiration. You challenge me to become a kinder, stronger, and better man simply by being you. There is no joy in this world that compares to catching your eye across a crowded room and knowing that we belong to each other.
+          </p>
+          <p>
+            As we celebrate another anniversary today, my promise to you remains as strong as the day we stood before the world: to cherish you, protect your dreams, hold you tight when times get heavy, and love you more passionately with every sunrise we are blessed to share.
+          </p>
+        </div>
+
+        <!-- Closing Signature: REPLACE WITH YOUR NAME -->
+        <div class="love-note-valediction">
+          <div class="valediction-phrase">Forever and always yours,</div>
+          <div class="valediction-name">Alexander</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+      <p class="footer-text">
+        Made with <span class="footer-heart">❤</span> for Kimi
+      </p>
+      <p class="footer-date">Happy Anniversary &bull; Celebrating Our Forever</p>
+    </footer>
+
+  </section>
+
+  <!-- ==========================================================================
+       LIGHTBOX / MODAL DIALOG
+       ========================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+    <button class="lightbox-close-btn" id="lightboxCloseBtn" title="Close Lightbox" aria-label="Close photo lightbox">&times;</button>
+    
+    <button class="lightbox-nav-btn prev" id="lightboxPrevBtn" title="Previous Photo" aria-label="Previous photo">
+      &#10094;
+    </button>
+    
+    <div class="lightbox-img-wrapper">
+      <img class="lightbox-img" id="lightboxImage" src="" alt="Full view anniversary memory">
+    </div>
+    
+    <button class="lightbox-nav-btn next" id="lightboxNextBtn" title="Next Photo" aria-label="Next photo">
+      &#10095;
+    </button>
+
+    <div class="lightbox-caption-box">
+      <h3 class="lightbox-caption-title" id="lightboxCaptionTitle">Caption</h3>
+      <p class="lightbox-caption-sub" id="lightboxCaptionSub">Subtitle</p>
+      <div class="lightbox-counter" id="lightboxCounter">Photo 1 of 8</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. Trigger Initial Page Fade-In
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+        launchCelebrationBurst();
+      }, 150);
+
+      // 2. Typewriter Effect for Hero Headline
+      const typewriterTarget = document.getElementById('typewriterText');
+      const wifeNameElement = document.getElementById('wifeName');
+      const wifeName = wifeNameElement ? wifeNameElement.innerText.trim() : "My Love";
+      const headlineText = `Happy Anniversary, ${wifeName} ❤`;
+      let charIndex = 0;
+
+      function typeWriter() {
+        if (charIndex < headlineText.length) {
+          typewriterTarget.textContent += headlineText.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 85);
+        }
+      }
+      setTimeout(typeWriter, 600);
+
+      // 3. Floating Particles Canvas (Drifting Rose Petals & Glowing Hearts)
+      const particleCanvas = document.getElementById('particle-canvas');
+      const ctx = particleCanvas.getContext('2d');
+      let width = particleCanvas.width = window.innerWidth;
+      let height = particleCanvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = particleCanvas.width = window.innerWidth;
+        height = particleCanvas.height = window.innerHeight;
+      });
+
+      const particleCount = window.innerWidth < 768 ? 22 : 42;
+      const particles = [];
+
+      class AmbientParticle {
+        constructor() {
+          this.reset(true);
+        }
+
+        reset(initial = false) {
+          this.x = Math.random() * width;
+          this.y = initial ? Math.random() * height : -30;
+          this.size = Math.random() * 12 + 8;
+          this.speedY = Math.random() * 1.2 + 0.6;
+          this.speedX = Math.random() * 0.8 - 0.4;
+          this.oscillationSpeed = Math.random() * 0.02 + 0.01;
+          this.angle = Math.random() * Math.PI * 2;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+          this.opacity = Math.random() * 0.45 + 0.25;
+          // 65% Rose Petal, 35% Heart
+          this.type = Math.random() > 0.35 ? 'petal' : 'heart';
+          this.color = Math.random() > 0.5 ? 'rgba(248, 187, 208, ' : 'rgba(214, 73, 98, ';
+        }
+
+        update() {
+          this.y += this.speedY;
+          this.angle += this.oscillationSpeed;
+          this.x += Math.sin(this.angle) * 0.8 + this.speedX;
+          this.rotation += this.rotationSpeed;
+
+          if (this.y > height + 40 || this.x < -40 || this.x > width + 40) {
+            this.reset(false);
+          }
+        }
+
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = this.opacity;
+
+          if (this.type === 'petal') {
+            // Draw Organic Curved Rose Petal
+            ctx.beginPath();
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.moveTo(0, -this.size);
+            ctx.bezierCurveTo(this.size * 0.8, -this.size * 0.6, this.size * 0.9, this.size * 0.5, 0, this.size);
+            ctx.bezierCurveTo(-this.size * 0.9, this.size * 0.5, -this.size * 0.8, -this.size * 0.6, 0, -this.size);
+            ctx.fill();
+          } else {
+            // Draw Romantic Heart
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(255, 170, 190, ' + this.opacity + ')';
+            const s = this.size * 0.55;
+            ctx.moveTo(0, s * 0.3);
+            ctx.bezierCurveTo(-s, -s * 0.8, -s * 1.5, s * 0.3, 0, s * 1.5);
+            ctx.bezierCurveTo(s * 1.5, s * 0.3, s, -s * 0.8, 0, s * 0.3);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new AmbientParticle());
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+
+      // 4. Initial Confetti / Hearts Celebratory Burst
+      function launchCelebrationBurst() {
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const cCtx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        const burstHearts = [];
+        const burstCount = 48;
+
+        for (let i = 0; i < burstCount; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 8 + 3;
+          burstHearts.push({
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2.5,
+            size: Math.random() * 14 + 10,
+            rotation: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.15,
+            alpha: 1,
+            color: ['#d4af37', '#f8bbd0', '#ff476f', '#ffffff', '#e6ca65'][Math.floor(Math.random() * 5)]
+          });
+        }
+
+        let burstFrame = 0;
+        function runBurst() {
+          cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          let alive = false;
+
+          burstHearts.forEach(h => {
+            h.x += h.vx;
+            h.y += h.vy;
+            h.vy += 0.15; // Gravity
+            h.vx *= 0.98;
+            h.rotation += h.vRot;
+            h.alpha -= 0.012;
+
+            if (h.alpha > 0) {
+              alive = true;
+              cCtx.save();
+              cCtx.translate(h.x, h.y);
+              cCtx.rotate(h.rotation);
+              cCtx.globalAlpha = Math.max(0, h.alpha);
+              cCtx.fillStyle = h.color;
+
+              // Heart shape
+              const s = h.size * 0.5;
+              cCtx.beginPath();
+              cCtx.moveTo(0, s * 0.3);
+              cCtx.bezierCurveTo(-s, -s * 0.8, -s * 1.5, s * 0.3, 0, s * 1.5);
+              cCtx.bezierCurveTo(s * 1.5, s * 0.3, s, -s * 0.8, 0, s * 0.3);
+              cCtx.fill();
+              cCtx.restore();
+            }
+          });
+
+          burstFrame++;
+          if (alive && burstFrame < 160) {
+            requestAnimationFrame(runBurst);
+          } else {
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          }
+        }
+        runBurst();
+      }
+
+      // 5. Scroll-Triggered Progress Line and Milestone Animations
+      const timelineSection = document.getElementById('story');
+      const timelineProgressLine = document.getElementById('timelineProgressLine');
+      const milestoneCards = document.querySelectorAll('.milestone-card');
+
+      function updateTimelineProgress() {
+        if (!timelineSection || !timelineProgressLine) return;
+
+        const rect = timelineSection.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
+
+        // Calculate visible percentage through the story section
+        if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+          const scrolled = windowHeight * 0.65 - sectionTop;
+          const percentage = Math.min(100, Math.max(0, (scrolled / sectionHeight) * 100));
+          timelineProgressLine.style.height = `${percentage}%`;
+        }
+      }
+
+      window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+      updateTimelineProgress();
+
+      // Intersection Observer with bidirectional re-trigger on every scroll
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          } else {
+            // Remove in-view when leaving viewport so animation triggers EVERY TIME on scroll!
+            entry.target.classList.remove('in-view');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      // Observe milestone items (animates both central pin and card)
+      const milestoneItems = document.querySelectorAll('.milestone-item');
+      milestoneItems.forEach(item => revealObserver.observe(item));
+
+      // Observe gallery items
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      galleryItems.forEach(item => revealObserver.observe(item));
+
+      // Observe love note card
+      const loveNoteCard = document.querySelector('.love-note-card');
+      if (loveNoteCard) revealObserver.observe(loveNoteCard);
+
+      // 6. Sticky Right Side Navigation Scroll-Spy
+      const sections = document.querySelectorAll('section[data-nav]');
+      const navDots = document.querySelectorAll('.nav-dot');
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            navDots.forEach(dot => {
+              dot.classList.toggle('active', dot.getAttribute('data-section') === currentId);
+            });
+          }
+        });
+      }, {
+        threshold: 0.4
+      });
+
+      sections.forEach(sec => navObserver.observe(sec));
+
+      // 7. Lightbox Modal Gallery Functionality
+      const lightboxModal = document.getElementById('lightboxModal');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxCaptionTitle = document.getElementById('lightboxCaptionTitle');
+      const lightboxCaptionSub = document.getElementById('lightboxCaptionSub');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+      const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+      const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+
+      // Build Gallery Data Array
+      const galleryData = [];
+      galleryItems.forEach((item, idx) => {
+        const img = item.querySelector('.gallery-img');
+        galleryData.push({
+          src: img ? img.getAttribute('src') : '',
+          alt: img ? img.getAttribute('alt') : '',
+          title: item.getAttribute('data-caption-title') || 'Cherished Memory',
+          sub: item.getAttribute('data-caption-sub') || ''
+        });
+
+        item.addEventListener('click', () => {
+          openLightbox(idx);
+        });
+      });
+
+      let currentLightboxIndex = 0;
+
+      function openLightbox(index) {
+        currentLightboxIndex = index;
+        updateLightboxContent();
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function updateLightboxContent() {
+        const item = galleryData[currentLightboxIndex];
+        if (!item) return;
+
+        lightboxImage.src = item.src;
+        lightboxImage.alt = item.alt;
+        lightboxCaptionTitle.textContent = item.title;
+        lightboxCaptionSub.textContent = item.sub;
+        lightboxCounter.textContent = `Memory ${currentLightboxIndex + 1} of ${galleryData.length}`;
+      }
+
+      function showNextPhoto() {
+        currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
+        updateLightboxContent();
+      }
+
+      function showPrevPhoto() {
+        currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+        updateLightboxContent();
+      }
+
+      lightboxCloseBtn.addEventListener('click', closeLightbox);
+      lightboxNextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNextPhoto(); });
+      lightboxPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrevPhoto(); });
+
+      // Click outside to close
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal || e.target.classList.contains('lightbox-img-wrapper')) {
+          closeLightbox();
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (!lightboxModal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNextPhoto();
+        if (e.key === 'ArrowLeft') showPrevPhoto();
+      });
+
+      // 8. Subtle Romantic Audio Controller
+      const audioBtn = document.getElementById('audioToggleBtn');
+      const bgAudio = document.getElementById('bg-audio');
+      const audioTooltip = document.getElementById('audioStatusTooltip');
+      let isAudioPlaying = false;
+
+      // Romantic Web Audio Synthesizer fallback if external audio source is muted or blocked
+      let audioCtx = null;
+      let synthInterval = null;
+
+      function playGentlePianoChime() {
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+
+          // Gentle romantic pentatonic notes (F# minor / A major pentatonic)
+          const notes = [220.00, 277.18, 329.63, 440.00, 554.37, 659.25];
+          const freq = notes[Math.floor(Math.random() * notes.length)];
+
+          const osc = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+          gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 0.1);
+          gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.8);
+
+          osc.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+
+          osc.start();
+          osc.stop(audioCtx.currentTime + 2.9);
+        } catch (err) {
+          console.log("Web Audio not available:", err);
+        }
+      }
+
+      function toggleAudioPlayback() {
+        if (!isAudioPlaying) {
+          bgAudio.play().then(() => {
+            isAudioPlaying = true;
+            updateAudioUI(true);
+          }).catch(() => {
+            // If local audio file hasn't been set yet or autoplay blocked, activate calming gentle synth melody
+            isAudioPlaying = true;
+            playGentlePianoChime();
+            synthInterval = setInterval(playGentlePianoChime, 2400);
+            updateAudioUI(true);
+          });
+        } else {
+          isAudioPlaying = false;
+          bgAudio.pause();
+          if (synthInterval) clearInterval(synthInterval);
+          updateAudioUI(false);
+        }
+      }
+
+      function updateAudioUI(playing) {
+        if (playing) {
+          audioBtn.classList.add('playing');
+          audioTooltip.textContent = "Music: Playing ❤";
+        } else {
+          audioBtn.classList.remove('playing');
+          audioTooltip.textContent = "Music: Paused";
+        }
+      }
+
+      audioBtn.addEventListener('click', toggleAudioPlayback);
+
+    });
+  </script>
+</body>
+</html>
