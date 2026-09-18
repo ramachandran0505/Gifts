@@ -1799,200 +1799,446 @@ ul {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN SYSTEM (Desktop, Tablet, Mobile)
+   RESPONSIVE DESIGN SYSTEM — REWORKED
+   Desktop → Laptop → Tablet → Mobile → Small Mobile
    ========================================================================== */
 
-/* Tablet & Smaller Laptops (<= 1100px) */
-@media screen and (max-width: 1100px) {
-  .occasions-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .birthday-categories-grid,
-  .romantic-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .marriage-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+:where(button, a, input, label) {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Tablet & Mobile Breakpoint (<= 992px) */
-@media screen and (max-width: 992px) {
-  .top-bar {
-    display: none;
+body {
+  min-width: 320px;
+}
+
+.container {
+  width: min(100% - 32px, 1280px);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.section-padding {
+  padding: clamp(64px, 7vw, 100px) 0;
+}
+
+/* ---------- Large laptop / desktop ---------- */
+@media (max-width: 1200px) {
+  .nav-container { gap: 18px; }
+  .nav-menu { gap: 0; }
+  .nav-link {
+    padding-inline: 10px;
+    font-size: 0.86rem;
   }
+  .nav-actions { gap: 8px; }
+  .hero-grid { gap: 42px; }
+  .hero-headline { font-size: clamp(3rem, 5vw, 4rem); }
+  .occasions-grid, .products-grid { gap: 24px; }
+  .footer-grid { gap: 34px; }
+}
+
+/* ---------- Tablet / iPad ---------- */
+@media (max-width: 1024px) {
+  .top-bar { display: none; }
 
   .nav-container {
-    height: 72px;
+    min-height: 72px;
+    height: auto;
+    padding-block: 10px;
   }
 
-  /* Hamburger Toggle Display */
-  .hamburger-label {
-    display: flex;
-  }
+  .brand-logo { flex-shrink: 0; }
 
-  /* Navigation Drawer for Mobile */
+  .brand-name { font-size: 1.35rem; }
+  .brand-tagline { font-size: 0.58rem; }
+
+  .hamburger-label { display: flex; }
+
   .nav-menu {
     position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: calc(100vh - 72px);
+    inset: 72px 0 0;
+    width: 100%;
+    height: calc(100dvh - 72px);
     background: rgba(253, 251, 247, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: 30px 24px;
-    gap: 8px;
+    gap: 6px;
+    padding: 22px max(20px, 5vw) 40px;
     overflow-y: auto;
+    overscroll-behavior: contain;
     transform: translateX(100%);
     transition: transform var(--trans-smooth);
     z-index: 999;
+    box-shadow: -12px 0 35px rgba(28, 25, 23, 0.08);
   }
 
-  /* Pure CSS Checkbox Trigger to open menu */
   .nav-toggle-input:checked ~ .nav-menu {
     transform: translateX(0);
   }
 
-  /* Hamburger Animation into X */
-  .nav-toggle-input:checked ~ .hamburger-label span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .nav-toggle-input:checked ~ .hamburger-label span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle-input:checked ~ .hamburger-label span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
   .nav-link {
-    font-size: 1.15rem;
-    padding: 14px 20px;
-    border-radius: var(--radius-sm);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+    border: 1px solid transparent;
   }
 
-  .dropdown-menu {
-    position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    box-shadow: none;
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
-    margin: 6px 0 10px 15px;
-    padding: 4px 0;
+  .nav-link:hover,
+  .nav-link.active {
+    background: var(--color-blush-soft);
+    border-color: rgba(201, 24, 74, 0.10);
   }
 
-  .dropdown-menu::before {
-    display: none;
+  .nav-actions { margin-left: auto; }
+
+  .nav-account-btn { padding: 9px 14px; }
+
+  .hero-section {
+    min-height: auto;
+    padding: 70px 0 80px;
   }
 
-  /* Hero Section Mobile/Tablet Stack */
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
     text-align: center;
+    gap: 50px;
   }
 
   .hero-content {
-    max-width: 100%;
-    margin: 0 auto;
+    max-width: 760px;
+    margin-inline: auto;
   }
 
   .hero-headline {
-    font-size: 2.85rem;
+    font-size: clamp(2.8rem, 7vw, 4rem);
   }
 
-  .hero-subheading {
-    margin: 0 auto 30px;
-  }
+  .hero-subheading { margin-inline: auto; }
 
-  .hero-cta-group {
-    justify-content: center;
-  }
-
+  .hero-cta-group,
   .hero-trust-bar {
     justify-content: center;
   }
 
   .hero-main-card {
-    max-width: 380px;
+    max-width: 520px;
+    margin-inline: auto;
   }
 
-  .hero-image {
-    height: 420px;
+  .hero-image { height: min(520px, 70vw); }
+
+  .float-badge-box { left: -12px; }
+  .float-heart-badge { right: -12px; }
+
+  .occasions-grid,
+  .products-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .float-badge-box {
-    left: 0;
+  .birthday-categories-grid,
+  .romantic-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .float-heart-badge {
-    right: 0;
+  .marriage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .showcase-split {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
+  .showcase-split,
   .offer-container {
     grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .showcase-content,
+  .offer-content {
+    max-width: 760px;
+    margin-inline: auto;
     text-align: center;
   }
 
-  .offer-desc {
-    margin: 0 auto 28px;
-  }
-
+  .milestone-pills,
   .countdown-wrap {
     justify-content: center;
   }
+
+  .showcase-gallery,
+  .offer-visual-card {
+    width: min(100%, 720px);
+    margin-inline: auto;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-/* Smartphone Mobile View (<= 640px) */
-@media screen and (max-width: 640px) {
-  .section-padding {
-    padding: 60px 0;
+/* ---------- Tablet portrait / large phones ---------- */
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 28px, 680px);
   }
 
-  .section-title {
-    font-size: 2.1rem;
+  .nav-container { min-height: 68px; }
+
+  .nav-menu {
+    top: 68px;
+    height: calc(100dvh - 68px);
   }
+
+  .brand-logo { gap: 9px; }
+
+  .brand-logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 1.18rem;
+    letter-spacing: 1.5px;
+  }
+
+  .brand-tagline { letter-spacing: 2px; }
+
+  .nav-actions { gap: 4px; }
+
+  .action-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-account-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav-account-btn span { display: none; }
+
+  .hamburger-label {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-section { padding: 58px 0 68px; }
 
   .hero-headline {
-    font-size: 2.25rem;
+    font-size: clamp(2.35rem, 9vw, 3.25rem);
+  }
+
+  .hero-subheading { font-size: 1.05rem; }
+
+  .hero-cta-group { gap: 12px; }
+
+  .btn {
+    min-height: 48px;
+    padding: 12px 22px;
   }
 
   .hero-trust-bar {
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item { min-width: 90px; }
+
+  .hero-main-card { max-width: 520px; }
+
+  .hero-image { height: 460px; }
+
+  .float-badge-box,
+  .float-heart-badge {
+    transform: scale(0.9);
+  }
+
+  .occasion-img-wrap { height: 230px; }
+  .product-media { height: 250px; }
+
+  .showcase-section,
+  .special-offer-section,
+  .features-section {
+    padding-block: 64px;
+  }
+
+  .showcase-hero-img { height: 360px; }
+
+  .offer-headline {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+  }
+
+  .offer-desc { font-size: 1rem; }
+  .offer-img { height: 340px; }
+
+  .footer-grid { gap: 28px; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 24px, 560px);
+  }
+
+  html { scroll-padding-top: 70px; }
+
+  .nav-container {
+    min-height: 64px;
+    padding-block: 8px;
+  }
+
+  .nav-menu {
+    top: 64px;
+    height: calc(100dvh - 64px);
+    padding: 16px 12px 32px;
+  }
+
+  .brand-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+  }
+
+  .brand-tagline { display: none; }
+
+  .nav-actions { gap: 2px; }
+
+  .action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .action-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .action-badge {
+    width: 16px;
+    height: 16px;
+    font-size: 0.55rem;
+    top: 0;
+    right: 0;
+  }
+
+  .nav-account-btn,
+  .hamburger-label {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-account-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .hamburger-label span { width: 18px; }
+
+  .hero-section { padding: 48px 0 58px; }
+
+  .hero-pill {
+    max-width: 100%;
+    font-size: 0.72rem;
+    padding: 6px 12px;
+  }
+
+  .hero-headline {
+    font-size: clamp(2rem, 11vw, 2.7rem);
+    line-height: 1.14;
+  }
+
+  .hero-subheading {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .hero-cta-group {
     flex-direction: column;
-    gap: 16px;
+    width: 100%;
+    margin-bottom: 34px;
   }
 
-  .occasions-grid {
-    grid-template-columns: 1fr;
+  .hero-cta-group .btn { width: 100%; }
+
+  .hero-trust-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding-top: 22px;
   }
 
-  .products-grid {
-    grid-template-columns: 1fr;
+  .trust-num { font-size: 1.35rem; }
+
+  .trust-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.5px;
   }
 
+  .hero-main-card {
+    width: 100%;
+    border-width: 4px;
+    border-radius: 22px;
+  }
+
+  .hero-image { height: min(115vw, 440px); }
+
+  .hero-image-overlay { padding: 22px 18px; }
+
+  .float-badge-box {
+    top: 8%;
+    left: -2px;
+    padding: 9px 12px;
+    gap: 8px;
+    transform: scale(0.78);
+    transform-origin: left center;
+  }
+
+  .float-heart-badge {
+    right: -2px;
+    bottom: 8%;
+    padding: 9px 14px;
+    transform: scale(0.78);
+    transform-origin: right center;
+  }
+
+  .badge-box-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .badge-box-text h4 { font-size: 0.78rem; }
+
+  .badge-box-text p,
+  .heart-badge-text { font-size: 0.68rem; }
+
+  .section-header { margin-bottom: 38px; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 1.8px;
+    padding: 5px 13px;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+  }
+
+  .section-subtitle { font-size: 0.95rem; }
+
+  .occasions-grid,
+  .products-grid,
   .birthday-categories-grid,
   .romantic-grid,
   .marriage-grid,
@@ -2001,49 +2247,152 @@ ul {
     grid-template-columns: 1fr;
   }
 
+  .occasions-grid,
+  .products-grid { gap: 20px; }
+
+  .occasion-content,
+  .product-details { padding: 20px; }
+
+  .occasion-img-wrap { height: 220px; }
+  .product-media { height: 260px; }
+
+  .birthday-categories-grid,
+  .romantic-grid,
+  .marriage-grid {
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .romantic-card { height: 300px; }
+
+  .marriage-item { padding: 22px 18px; }
+
+  .showcase-section,
+  .special-offer-section,
+  .features-section {
+    padding-block: 56px;
+  }
+
+  .showcase-split,
+  .offer-container { gap: 30px; }
+
+  .showcase-hero-img {
+    height: 300px;
+    border-width: 4px;
+    border-radius: 22px;
+  }
+
+  .milestone-pills { gap: 7px; }
+
+  .milestone-pill {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .offer-headline {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+  }
+
   .countdown-wrap {
-    gap: 8px;
+    gap: 5px;
+    width: 100%;
   }
 
   .countdown-box {
-    width: 68px;
-    height: 72px;
+    width: calc((100% - 15px) / 4);
+    height: 70px;
   }
 
-  .countdown-num {
-    font-size: 1.6rem;
-  }
-
-  .countdown-colon {
-    font-size: 1.4rem;
-  }
+  .countdown-num { font-size: 1.45rem; }
 
   .countdown-label {
-    font-size: 0.6rem;
+    font-size: 0.52rem;
+    letter-spacing: 1px;
   }
 
-  .nav-account-btn span {
-    display: none;
+  .countdown-colon { font-size: 1.15rem; }
+  .offer-img { height: 300px; }
+
+  .feature-card { padding: 30px 20px; }
+
+  .site-footer { padding: 60px 0 24px; }
+
+  .footer-grid {
+    gap: 36px;
+    margin-bottom: 40px;
   }
+
+  .footer-col-brand { max-width: none; }
 
   .footer-bottom {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .payment-badges {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .newsletter-form {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 9px;
   }
 
-  .newsletter-input {
-    padding-right: 18px;
-  }
+  .newsletter-input { padding: 13px 16px; }
 
   .newsletter-submit {
     position: static;
-    padding: 12px;
     width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 380px) {
+  .container {
+    width: min(100% - 20px, 360px);
+  }
+
+  .brand-name { font-size: 0.95rem; }
+
+  .action-btn:nth-child(1) { display: none; }
+
+  .hero-headline { font-size: 1.9rem; }
+
+  .hero-image { height: 390px; }
+
+  .hero-trust-bar { grid-template-columns: 1fr; }
+
+  .trust-item {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .countdown-num { font-size: 1.25rem; }
+  .countdown-label { font-size: 0.48rem; }
+  .countdown-colon { font-size: 1rem; }
+
+  .occasion-title,
+  .product-name {
+    font-size: 1.12rem;
+  }
+}
+
+/* ---------- Accessibility / reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 </style>
@@ -2085,11 +2434,11 @@ ul {
 
             <!-- Occasions Direct Navigation Menu -->
             <nav class="nav-menu" id="primary-navigation" aria-label="Main Navigation">
-                <div class="nav-item"><a href="index.html" >Home</a></div>
-                <div class="nav-item"><a href="anniversary.html" >Anniversary</a></div>
-                <div class="nav-item"><a href="birthday.html" >Birthday</a></div>
+                <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+                <div class="nav-item"><a href="anniversary.html" class="nav-link">Anniversary</a></div>
+                <div class="nav-item"><a href="birthday.html" class="nav-link">Birthday</a></div>
                 <!-- <div class="nav-item"><a href="valentines.html" >Valentine's Day</a></div> -->
-                <div class="nav-item"><a href="marriage.html" >Marriage</a></div>
+                <div class="nav-item"><a href="marriage.html" class="nav-link">Marriage</a></div>
                 <!-- <div class="nav-item"><a href="festivals.html" >Festivals</a></div> -->
                 <!-- <div class="nav-item"><a href="corporate.html" >Corporate Gifts</a></div> -->
                 <!-- <div class="nav-item has-dropdown">
